@@ -1,0 +1,32 @@
+[core]
+	excludesfile = /Users/andreydolgov/.gitignore_global
+	editor = nvim
+  pager = less -F -X
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[merge]
+   tool = idea    
+[mergetool "idea"]
+  cmd = '/Applications/IntelliJ IDEA Edu.app/Contents/MacOS/idea' merge $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE") $(cd $(dirname "$BASE") && pwd)/$(basename "$BASE") $(cd $(dirname "$MERGED") && pwd)/$(basename "$MERGED")
+  trustExitCode = true
+[hub]
+  protocol = https
+[alias]
+  co = checkout
+  br = branch
+  ci = commit -v
+  st = status
+  di = diff
+  dc = diff --cached
+  aa = add --all
+  pullff = pull --ff-only
+  unstage = reset HEAD --
+  pp = ![[ $(git config branch.$(git symbolic-ref --short HEAD).merge) = '' ]] && git push -u origin $(git symbolic-ref --short HEAD) || git push
+  lg = log --graph --all --pretty=format:'%C(yellow)%h -%C(auto)%d %C(bold cyan)%s %C(bold white)(%cr)%Creset %C(dim white)<%an>'
+  rb = "! [[ ! -z $GIT_PREFIX ]] && cd $GIT_PREFIX || true && bundle exec rubocop -a `git st -s -- '*.rb' '*.rake' | grep -o '[AM??].*' | awk '{printf $2\" \"}'` `git st -s -- '*.rb' '*.rake' | grep -o '[R].*' | awk '{printf $4\" \"}'`"
+  rs = "! [[ ! -z $GIT_PREFIX ]] && cd $GIT_PREFIX || true && bundle exec rspec `git st -s -- '*_spec.rb' | grep -o '[AM??].*' | awk '{printf $2\" \"}'` `git st -s -- '*_spec.rb' | grep -o '[R].*' | awk '{printf $4\" \"}'`"
+[user]
+  name = Andrey Dolgov
+	email = tekdel@gmail.com
+[commit]
