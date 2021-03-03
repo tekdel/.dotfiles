@@ -3,7 +3,7 @@ filetype plugin on
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'sheerun/vim-polyglot'
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'prettier/vim-prettier'
@@ -13,6 +13,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'sainnhe/sonokai'
+Plug 'vim-test/vim-test'
 
 call plug#end()
 
@@ -47,6 +48,25 @@ set clipboard=unnamed
 " turn hybrid line numbers on
 set number relativenumber
 set nu rnu
+
+function! RailsTransform(cmd) abort
+ let project_name = matchstr(a:cmd, '\s[a-z_]*')
+ let new_command = 'cd' . project_name . '; ' . substitute(a:cmd, '[a-z_]*\/', '\1', '')
+ return new_command
+endfunction
+
+let test#strategy = "neovim"
+let test#neovim#term_position = "below 10sp"
+
+let pwd = getcwd()
+if pwd =~ "src/\mealpal"
+  let g:test#custom_transformations = {'mealpal-rails': function('RailsTransform') }
+  let g:test#transformation = 'mealpal-rails'
+  let g:test#preserve_screen = 1
+endif
+
+" vim-rspec mappings
+nmap <C-t> :TestNearest<CR>
 
 " airline
 "let g:airline_theme = "base16_spacemacs"
