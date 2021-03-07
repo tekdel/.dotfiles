@@ -68,7 +68,7 @@ endif
 
 " vim-rspec mappings
 nmap <C-t> :TestNearest<CR>
-
+"nmap <C-T> :TestFile<CR>
 " airline
 "let g:airline_theme = "base16_spacemacs"
 "let g:airline_theme = "sonokai"

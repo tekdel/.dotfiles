@@ -30,3 +30,5 @@
   name = Andrey Dolgov
 	email = tekdel@gmail.com
 [commit]
+[pull]
+	ff = only
