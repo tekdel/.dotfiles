@@ -8,8 +8,8 @@ window:
     x: 50
     y: 50
 
-  startup_mode: SimpleFullscreen
-  position:
+  #startup_mode: SimpleFullscreen
+  #position:
     #x: 0
     #y: 0
 
@@ -110,3 +110,9 @@ key_bindings:
     - { key: D,        mods: Alt,           chars: "\x1bd"                       }
     - { key: E,        mods: Alt,           chars: "\x1be"                       }
     - { key: X,        mods: Alt|Shift,     chars: "\x1bX"                       }
+shell:
+  program: /bin/zsh
+  args:
+    - -l
+    - -c
+    - "tmux attach || tmux"
