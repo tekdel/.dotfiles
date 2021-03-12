@@ -74,6 +74,7 @@ nmap <C-t> :TestNearest<CR>
 " airline
 "let g:airline_theme = "base16_spacemacs"
 "let g:airline_theme = "sonokai"
+let g:airline_section_b = airline#section#create_left(['hunks'])
 
 " ayu
 "let ayucolor="dark"
